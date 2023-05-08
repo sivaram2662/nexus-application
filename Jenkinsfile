@@ -27,7 +27,7 @@ pipeline {
                 nexusUrl: '172.31.24.231:8081',
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                repository: 'java-maven-ci',
+                repository: 'jenkins-ci',
                 version: '1.0.${BUILD_NUMBER}'
             }
         }
