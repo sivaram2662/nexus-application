@@ -12,7 +12,6 @@ pipeline {
                 sh '/opt/maven/bin/mvn clean package'
             }
         }
-        
         stage('Upload files to Nexus') {
             steps {
                 nexusArtifactUploader artifacts: [
