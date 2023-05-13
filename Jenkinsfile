@@ -9,7 +9,7 @@ pipeline {
         }
          stage('maven-build') {
             steps {
-                sh '/opt/maven/bin/mvn clean package'
+                sh '/opt/apache-maven-3.9.2/bin/mvn clean package'
             }
         }
         stage('Upload files to Nexus') {
