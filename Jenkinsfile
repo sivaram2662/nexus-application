@@ -24,7 +24,7 @@ pipeline {
                 ],
                 credentialsId: 'nexus3',
                 groupId: 'sparkjava-hello-world',
-                nexusUrl: '172.31.24.231:8081',
+                nexusUrl: '172.31.35.134:8081',
                 nexusVersion: 'nexus3',
                 protocol: 'http',
                 repository: 'jenkins-repo',
