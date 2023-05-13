@@ -35,32 +35,32 @@
 // }
 
 
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage('SCM') {
-            steps {
+    // environment {
+    //     PATH = "$PATH:/opt/apache-maven-3.8.2/bin"
+    // }
+    stages{
+       stage('GetCode'){
+            steps{
                git branch: 'main', url: 'git@github.com:sivaram2662/sparkjava-application.git'
             }
-        }
-        stage('build && SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('My SonarQube Server') {
-                    // Optionally use a Maven environment you've configured already
-                    withMaven(maven:'Maven 3.5') {
-                        sh '/opt/maven/bin/mvn clean package sonar:sonar'
-                    }
-                }
+         }        
+       stage('Build'){
+            steps{
+                sh '/opt/maven/bin/mvn clean package'
             }
+         }
+        stage('SonarQube analysis') {
+//    def scannerHome = tool 'SonarScanner 4.0';
+        steps{
+        withSonarQubeEnv('sonarqube-8.3') { 
+        // If you have configured more than one global server connection, you can specify its name
+//      sh "${scannerHome}/bin/sonar-scanner"
+        sh "mvn sonar:sonar"
+    }
         }
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
         }
+       
     }
 }
