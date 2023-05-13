@@ -70,33 +70,28 @@
 
 
 
-
-pipeline{
+pipeline {
     agent any
-    environment {
-        PATH = "$PATH:/opt/apache-maven-3.9.2/bin"
-    }
-    stages{
-       stage('GetCode'){
-            steps{
-                 git branch: 'main', url: 'git@github.com:sivaram2662/sparkjava-application.git'
+    stages {
+        stage('SonarQube analysis 1') {
+            steps {
+                sh 'mvn clean package sonar:sonar'
             }
-         }        
-       stage('Build'){
-            steps{
-                sh 'mvn clean package'
+        }
+        stage("Quality Gate 1") {
+            steps {
+                waitForQualityGate abortPipeline: true
             }
-         }
-        stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 4.0';
-        steps{
-        withSonarQubeEnv('sonarqube-8.3') { 
-        // If you have configured more than one global server connection, you can specify its name
-//      sh "${scannerHome}/bin/sonar-scanner"
-        sh "mvn sonar:sonar"
-    }
         }
+        stage('SonarQube analysis 2') {
+            steps {
+                sh 'gradle sonarqube'
+            }
         }
-       
+        stage("Quality Gate 2") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
     }
 }
