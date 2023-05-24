@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh 'curl -u admin:admin@123 -O http://10.0.4.157:8081/repository/maven-hosted-code/sparkjava-hello-world/sparkjava-hello-world/1.0.4/sparkjava-hello-world-1.0.4.war'
                 sh "mv sparkjava-hello-world-1.0.4.war sparkjava-hello-world-${BUILD_NUMBER}.war"
-                sh 'scp sparkjava-hello-world-${BUILD_NUMBER}.war root@10.0.4.165:/opt/tomcat/webapps'
+                sh 'scp sparkjava-hello-world-${BUILD_NUMBER}.war root@10.0.4.165:/opt/apache-tomcat-10.0.8/webapps'
             }
         }
     }
