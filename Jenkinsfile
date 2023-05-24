@@ -24,10 +24,10 @@ pipeline {
                 ],
                 credentialsId: 'nexus3',
                 groupId: 'sparkjava-hello-world',
-                nexusUrl: '172.31.8.36:8081',
+                nexusUrl: '10.0.4.157:8081',
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                repository: 'hostedzone-maven-code',
+                repository: 'maven-hosted-code',
                 version: '1.0.${BUILD_NUMBER}'
             }
         }
