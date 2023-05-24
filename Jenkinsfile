@@ -18,7 +18,7 @@ pipeline {
                     [
                         artifactId: 'sparkjava-hello-world',
                         classifier: '',
-                        file: "/var/lib/jenkins/workspace/java-war-ci-job/target/sparkjava-hello-world-1.0.war",
+                        file: "/var/lib/jenkins/workspace/pipeline/target/sparkjava-hello-world-1.0.war",
                         type: 'war'
                     ]
                 ],
