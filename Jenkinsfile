@@ -22,7 +22,7 @@ pipeline {
                         type: 'war'
                     ]
                 ],
-                credentialsId: 'nexus3',
+                credentialsId: 'nexus',
                 groupId: 'sparkjava-hello-world',
                 nexusUrl: '10.0.4.157:8081',
                 nexusVersion: 'nexus3',
