@@ -31,7 +31,13 @@ pipeline {
                 version: '1.0.${BUILD_NUMBER}'
             }
         }
+          stage('Deploy to Tomcat server') {
+            steps {
+                sh 'curl -u admin -p admin@123 -O http://nexus.siva.quest/repository/maven-hosted-code/sparkjava-hello-world/sparkjava-hello-world/1.0.4/sparkjava-hello-world-1.0.4.war'
+            }
+        }
     }
-}
+} 
+
 
 
