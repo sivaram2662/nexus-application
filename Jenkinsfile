@@ -7,7 +7,7 @@ pipeline {
                 git branch: 'main', url: 'git@github.com:sivaram2662/sparkjava-application.git'
             }
         }
-         stage('maven-build') {
+        stage('maven-build') {
             steps {
                 sh 'mvn clean package'
             }
